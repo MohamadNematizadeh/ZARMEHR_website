@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Responsive Sidebar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
+</head>
+<style>
+  @font-face {
+    font-family: 'IRANSans-bold';
+    src: url("font/IRANSans(FaNum)_Black.ttf");
+    font-weight: bold;
+  }
+
+  @font-face {
+    font-family: 'IRANSans-light';
+    src: url("font/IRANSans(FaNum)_Light.ttf");
+    font-weight: lighter;
+  }
+
+  @font-face {
+    font-family: 'IRANSans-medium';
+    src: url("font/IRANSans(FaNum)_Medium.ttf");
+    font-weight: medium;
+  }
+
+  @font-face {
+    font-family: 'IRANSans-ultralight';
+    src: url("font/IRANSans(FaNum)_UltraLight.ttf");
+    font-weight: light;
+  }
+
+  .font-iransans-light {
+    font-family: 'IRANSans-light', sans-serif;
+  }
+
+  .font-iransans-bold {
+    font-family: 'IRANSans-bold', sans-serif;
+  }
+
+  .font-iransans-medium {
+    font-family: 'IRANSans-medium', sans-serif;
+  }
+
+  .font-iransans-ultralight {
+    font-family: 'IRANSans-ultralight', sans-serif;
+  }
+
+
+.chart {
+
+  width: 600px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  margin: 50px auto;
+  justify-content: center;
+  align-items: center;
+}
+.top-box,.bottom-box {
+  width: 100%;
+
+  height: calc(50% - 10px);
+  display: flex;
+}
+.bottom-box{
+    flex-direction: row-reverse;
+    gap: 50px;
+}
+.bottom,
+.top {
+  width: 33.3333%;
+  height: 100%;
+  position: relative;
+}
+.center {
+  width: 100%;
+  height: 4px;
+  background: #ffffff;
+}
+.text{
+    position: absolute;
+    top: 0;
+    left: 70px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: gray;
+}
+.box{
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgb(255, 0, 0);
+    position: absolute;
+    bottom: 60px;
+    left: 40px;
+    transform: translateX(-50%);
+}
+.line{
+    width: 4px ;
+    height: 100%;
+    background: rgb(255, 255, 255);
+    position: absolute;
+    left: 40px;
+}
+
+</style>
+
+<body class="bg-[#131419] text-white">
+
+  <div class="flex p-6 ">
+    <br>
+    <div class="sidebar bg-[#1D2027] h-screen w-60 x-10 mt-8 p-4 border-collapse border border-gray-800 rounded">
+      <div class="logo_details flex items-center justify-between ">
+        <div class="logo_name">
+          <img src="image/logo.png" style="max-width: 90px;">
+        </div>
+      </div>
+      <hr>
+      <ul class="nav-list mt-3">
+        <li class="group">
+          <a href="#" class="flex items-center p-4 hover:bg-blue-600 rounded">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16 11V17M12 7V17M8 13V17M12 21C8.25027 21 6.3754 21 5.06107 20.0451C4.6366 19.7367 4.26331 19.3634 3.95491 18.9389C3 17.6246 3 15.7497 3 12C3 8.25027 3 6.3754 3.95491 5.06107C4.26331 4.6366 4.6366 4.26331 5.06107 3.95491C6.3754 3 8.25027 3 12 3C15.7497 3 17.6246 3 18.9389 3.95491C19.3634 4.26331 19.7367 4.6366 20.0451 5.06107C21 6.3754 21 8.25027 21 12C21 15.7497 21 17.6246 20.0451 18.9389C19.7367 19.3634 19.3634 19.7367 18.9389 20.0451C17.6246 21 15.7497 21 12 21Z"
+                stroke="#DEDEDE" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+
+            <span class="link_name ml-4 font-iransans-light">دیاگرام تک‌خطی</span>
+          </a>
+        </li>
+        <li class="group">
+          <a href="#" class="flex items-center p-4 hover:bg-blue-600 rounded">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M5.06107 21.0451L5.50191 20.4383L5.06107 21.0451ZM3.95491 19.9389L4.56168 19.4981L3.95491 19.9389ZM20.0451 19.9389L19.4383 19.4981L20.0451 19.9389ZM18.9389 21.0451L18.4981 20.4383L18.9389 21.0451ZM18.9389 2.95491L18.4981 3.56168L18.9389 2.95491ZM20.0451 4.06107L19.4383 4.50191L20.0451 4.06107ZM5.06107 2.95491L5.50191 3.56168L5.06107 2.95491ZM3.95491 4.06107L4.56168 4.50191L3.95491 4.06107ZM8 15.25C7.58579 15.25 7.25 15.5858 7.25 16C7.25 16.4142 7.58579 16.75 8 16.75V15.25ZM16 16.75C16.4142 16.75 16.75 16.4142 16.75 16C16.75 15.5858 16.4142 15.25 16 15.25V16.75ZM8 11.25C7.58579 11.25 7.25 11.5858 7.25 12C7.25 12.4142 7.58579 12.75 8 12.75V11.25ZM16 12.75C16.4142 12.75 16.75 12.4142 16.75 12C16.75 11.5858 16.4142 11.25 16 11.25V12.75ZM13 7.25C12.5858 7.25 12.25 7.58579 12.25 8C12.25 8.41421 12.5858 8.75 13 8.75V7.25ZM16 8.75C16.4142 8.75 16.75 8.41421 16.75 8C16.75 7.58579 16.4142 7.25 16 7.25V8.75ZM20.25 11V13H21.75V11H20.25ZM3.75 13V11H2.25V13H3.75ZM12 21.25C10.1084 21.25 8.74999 21.249 7.69804 21.135C6.66013 21.0225 6.00992 20.8074 5.50191 20.4383L4.62023 21.6518C5.42656 22.2377 6.37094 22.5 7.53648 22.6263C8.68798 22.751 10.1418 22.75 12 22.75V21.25ZM2.25 13C2.25 14.8582 2.24897 16.312 2.37373 17.4635C2.50001 18.6291 2.76232 19.5734 3.34815 20.3798L4.56168 19.4981C4.19259 18.9901 3.97745 18.3399 3.865 17.302C3.75103 16.25 3.75 14.8916 3.75 13H2.25ZM5.50191 20.4383C5.14111 20.1762 4.82382 19.8589 4.56168 19.4981L3.34815 20.3798C3.70281 20.8679 4.13209 21.2972 4.62023 21.6518L5.50191 20.4383ZM20.25 13C20.25 14.8916 20.249 16.25 20.135 17.302C20.0225 18.3399 19.8074 18.9901 19.4383 19.4981L20.6518 20.3798C21.2377 19.5734 21.5 18.6291 21.6263 17.4635C21.751 16.312 21.75 14.8582 21.75 13H20.25ZM12 22.75C13.8582 22.75 15.312 22.751 16.4635 22.6263C17.6291 22.5 18.5734 22.2377 19.3798 21.6518L18.4981 20.4383C17.9901 20.8074 17.3399 21.0225 16.302 21.135C15.25 21.249 13.8916 21.25 12 21.25V22.75ZM19.4383 19.4981C19.1762 19.8589 18.8589 20.1762 18.4981 20.4383L19.3798 21.6518C19.8679 21.2972 20.2972 20.8679 20.6518 20.3798L19.4383 19.4981ZM12 2.75C13.8916 2.75 15.25 2.75103 16.302 2.865C17.3399 2.97745 17.9901 3.19259 18.4981 3.56168L19.3798 2.34815C18.5734 1.76232 17.6291 1.50001 16.4635 1.37373C15.312 1.24897 13.8582 1.25 12 1.25V2.75ZM21.75 11C21.75 9.14184 21.751 7.68798 21.6263 6.53648C21.5 5.37094 21.2377 4.42656 20.6518 3.62023L19.4383 4.50191C19.8074 5.00992 20.0225 5.66013 20.135 6.69804C20.249 7.74999 20.25 9.10843 20.25 11H21.75ZM18.4981 3.56168C18.8589 3.82382 19.1762 4.14111 19.4383 4.50191L20.6518 3.62023C20.2972 3.13209 19.8679 2.70281 19.3798 2.34815L18.4981 3.56168ZM12 1.25C10.1418 1.25 8.68798 1.24897 7.53648 1.37373C6.37094 1.50001 5.42656 1.76232 4.62023 2.34815L5.50191 3.56168C6.00992 3.19259 6.66013 2.97745 7.69804 2.865C8.74999 2.75103 10.1084 2.75 12 2.75V1.25ZM3.75 11C3.75 9.10843 3.75103 7.74999 3.865 6.69804C3.97745 5.66013 4.19259 5.00992 4.56168 4.50191L3.34815 3.62023C2.76232 4.42656 2.50001 5.37094 2.37373 6.53648C2.24897 7.68798 2.25 9.14184 2.25 11H3.75ZM4.62023 2.34815C4.13209 2.70281 3.70281 3.13209 3.34815 3.62023L4.56168 4.50191C4.82382 4.14111 5.14111 3.82382 5.50191 3.56168L4.62023 2.34815ZM8 16.75H16V15.25H8V16.75ZM8 12.75H16V11.25H8V12.75ZM13 8.75H16V7.25H13V8.75Z"
+                fill="#DEDEDE" />
+            </svg>
+            <span class="link_name ml-2 font-iransans-ultralight">جزئیات اندازه‌گیری</span>
+          </a>
+        </li>
+        <li class="group">
+          <a href="#" class="flex items-center p-4 hover:bg-blue-600 rounded">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15.1831 2.61489C14.4812 2.22405 13.671 2 12.8029 2H11.0999C8.15552 2 5.87737 4.58064 6.24258 7.50234L6.32194 8.13719C6.46808 9.30631 6.04102 10.4741 5.17514 11.2731C3.99242 12.3645 3.66383 14.1016 4.36619 15.5496L4.46954 15.7627C5.13331 17.1311 6.52054 18 8.04144 18H16.2623C17.5656 18 18.7785 17.3342 19.4783 16.2347C20.4661 14.6826 20.2045 12.6465 18.8564 11.3945L18.8125 11.3538C18.3991 10.9698 18.0805 10.5067 17.8697 10C17.7836 9.79308 17.7154 9.5789 17.6662 9.35988M9.18317 21L9.48317 21.4C10.8332 23.2 13.5332 23.2 14.8832 21.4L15.1832 21"
+                stroke="#DEDEDE" stroke-width="1.5" stroke-linecap="round" />
+              <path
+                d="M19.1832 6C19.1832 7.10457 18.2878 8 17.1832 8C16.0787 8 15.1832 7.10457 15.1832 6C15.1832 4.89543 16.0787 4 17.1832 4C18.2878 4 19.1832 4.89543 19.1832 6Z"
+                fill="#FF7777" />
+            </svg>
+            <span class="link_name ml-4 font-iransans-light">هشدار و اعلان‌ها</span>
+          </a>
+        </li>
+        <li class="group">
+          <a href="#" class="flex items-center p-4 hover:bg-blue-600 rounded">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M5.93188 5.38642L5.74952 6.11391L5.93188 5.38642ZM9.30644 3.43812L8.58523 3.2323L9.30644 3.43812ZM3.23837 10.0517L3.77722 9.53005L3.23837 10.0517ZM3.23837 13.9483L2.69952 13.4266H2.69952L3.23837 13.9483ZM5.93188 18.6136L6.11423 19.3411L5.93188 18.6136ZM9.30644 20.5619L8.58523 20.7677L9.30644 20.5619ZM14.6935 20.5619L15.4147 20.7677L14.6935 20.5619ZM18.068 18.6136L18.2504 17.8861L18.068 18.6136ZM20.7615 13.9483L20.2227 14.47V14.47L20.7615 13.9483ZM20.7615 10.0517L20.2227 9.53005V9.53005L20.7615 10.0517ZM18.068 5.38642L17.8857 4.65893L18.068 5.38642ZM14.6935 3.43812L15.4147 3.2323L14.6935 3.43812ZM5.74952 6.11391C7.60843 6.57987 9.50172 5.48678 10.0276 3.64394L8.58523 3.2323C8.28146 4.2967 7.18792 4.92806 6.11423 4.65893L5.74952 6.11391ZM3.77722 9.53005C2.34195 8.04752 3.74798 5.6122 5.74952 6.11391L6.11423 4.65893C2.6489 3.7903 0.214599 8.00664 2.69952 10.5734L3.77722 9.53005ZM3.77722 14.47C5.1102 13.0931 5.1102 10.9069 3.77722 9.53005L2.69952 10.5734C3.46944 11.3687 3.46944 12.6314 2.69952 13.4266L3.77722 14.47ZM5.74952 17.8861C3.74798 18.3878 2.34195 15.9525 3.77722 14.47L2.69952 13.4266C0.214598 15.9934 2.6489 20.2097 6.11423 19.3411L5.74952 17.8861ZM10.0276 20.3561C9.50172 18.5133 7.60843 17.4202 5.74952 17.8861L6.11423 19.3411C7.18792 19.072 8.28146 19.7033 8.58523 20.7677L10.0276 20.3561ZM13.9722 20.3561C13.406 22.3403 10.5939 22.3403 10.0276 20.3561L8.58523 20.7677C9.56564 24.2031 14.4342 24.2031 15.4147 20.7677L13.9722 20.3561ZM18.2504 17.8861C16.3915 17.4202 14.4982 18.5133 13.9722 20.3561L15.4147 20.7677C15.7184 19.7033 16.812 19.072 17.8857 19.3411L18.2504 17.8861ZM20.2227 14.47C21.6579 15.9525 20.2519 18.3878 18.2504 17.8861L17.8857 19.3411C21.351 20.2097 23.7853 15.9934 21.3004 13.4266L20.2227 14.47ZM20.2227 9.53005C18.8897 10.9069 18.8897 13.0931 20.2227 14.47L21.3004 13.4266C20.5305 12.6314 20.5305 11.3687 21.3004 10.5734L20.2227 9.53005ZM18.2504 6.11391C20.2519 5.6122 21.6579 8.04752 20.2227 9.53005L21.3004 10.5734C23.7853 8.00664 21.351 3.7903 17.8857 4.65893L18.2504 6.11391ZM13.9722 3.64394C14.4982 5.48678 16.3915 6.57987 18.2504 6.11391L17.8857 4.65893C16.812 4.92806 15.7184 4.2967 15.4147 3.2323L13.9722 3.64394ZM15.4147 3.2323C14.4342 -0.203084 9.56564 -0.203083 8.58523 3.2323L10.0276 3.64394C10.5939 1.6597 13.406 1.6597 13.9722 3.64394L15.4147 3.2323ZM8.24994 12C8.24994 14.0711 9.92888 15.75 11.9999 15.75V14.25C10.7573 14.25 9.74994 13.2427 9.74994 12H8.24994ZM11.9999 15.75C14.071 15.75 15.7499 14.0711 15.7499 12H14.2499C14.2499 13.2427 13.2426 14.25 11.9999 14.25V15.75ZM15.7499 12C15.7499 9.92895 14.071 8.25001 11.9999 8.25001V9.75002C13.2426 9.75002 14.2499 10.7574 14.2499 12H15.7499ZM11.9999 8.25001C9.92888 8.25001 8.24994 9.92895 8.24994 12H9.74994C9.74994 10.7574 10.7573 9.75002 11.9999 9.75002V8.25001Z"
+                fill="#DEDEDE" />
+            </svg>
+            <span class="link_name ml-4 font-iransans-light">تنظیمات</span>
+          </a>
+        </li>
+        <hr class="border-gray-600">
+        <li class="group">
+          <a href="#" class="flex items-center p-4 hover:bg-blue-600 rounded">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M14 3V3.75V3ZM15 3V2.25V3ZM21 9H21.75H21ZM21 15H20.25H21ZM15 21V21.75V21ZM14 21V20.25V21ZM20.9384 16.7822L21.6792 16.8995V16.8995L20.9384 16.7822ZM16.7822 20.9384L16.6648 20.1977L16.7822 20.9384ZM16.7822 3.06156L16.8995 2.32079L16.8995 2.32079L16.7822 3.06156ZM20.9384 7.21783L21.6792 7.1005V7.1005L20.9384 7.21783ZM10.5496 3.39996C10.2184 3.64873 10.1516 4.11888 10.4003 4.45007C10.6491 4.78126 11.1192 4.84808 11.4504 4.59931L10.5496 3.39996ZM11.4504 19.4007C11.1192 19.1519 10.6491 19.2187 10.4003 19.5499C10.1516 19.8811 10.2184 20.3513 10.5496 20.6L11.4504 19.4007ZM3 11.25C2.58579 11.25 2.25 11.5858 2.25 12C2.25 12.4142 2.58579 12.75 3 12.75L3 11.25ZM16 12V11.25V12ZM12.534 15.4123C12.2095 15.6697 12.155 16.1414 12.4123 16.466C12.6697 16.7905 13.1414 16.845 13.466 16.5877L12.534 15.4123ZM14.763 14.6022L14.297 14.0145L14.763 14.6022ZM14.763 9.39785L14.297 9.98553L14.763 9.39785ZM13.466 7.41232C13.1414 7.15497 12.6697 7.20946 12.4123 7.53403C12.155 7.8586 12.2095 8.33034 12.534 8.58768L13.466 7.41232ZM16.9801 12.2507L17.7208 12.3687L17.7208 12.3687L16.9801 12.2507ZM16.9801 11.7493L17.7208 11.6313L17.7208 11.6313L16.9801 11.7493ZM14 3.75L15 3.75V2.25L14 2.25V3.75ZM20.25 9V15H21.75V9H20.25ZM15 20.25H14V21.75H15V20.25ZM20.25 15C20.25 15.9577 20.2477 16.3492 20.1977 16.6648L21.6792 16.8995C21.7523 16.4378 21.75 15.9003 21.75 15H20.25ZM15 21.75C15.9003 21.75 16.4378 21.7523 16.8995 21.6792L16.6648 20.1977C16.3492 20.2477 15.9577 20.25 15 20.25V21.75ZM20.1977 16.6648C19.9096 18.4834 18.4834 19.9096 16.6648 20.1977L16.8995 21.6792C19.3599 21.2895 21.2895 19.3599 21.6792 16.8995L20.1977 16.6648ZM15 3.75C15.9577 3.75 16.3492 3.75233 16.6648 3.80232L16.8995 2.32079C16.4378 2.24767 15.9003 2.25 15 2.25V3.75ZM21.75 9C21.75 8.09965 21.7523 7.56216 21.6792 7.1005L20.1977 7.33515C20.2477 7.65082 20.25 8.04233 20.25 9H21.75ZM16.6648 3.80232C18.4834 4.09035 19.9096 5.51661 20.1977 7.33515L21.6792 7.1005C21.2895 4.64012 19.3599 2.71048 16.8995 2.32079L16.6648 3.80232ZM14 2.25C12.7064 2.25 11.5106 2.67806 10.5496 3.39996L11.4504 4.59931C12.1607 4.06583 13.0424 3.75 14 3.75V2.25ZM14 20.25C13.0424 20.25 12.1607 19.9342 11.4504 19.4007L10.5496 20.6C11.5106 21.3219 12.7064 21.75 14 21.75V20.25ZM3 12.75L16 12.75V11.25L3 11.25L3 12.75ZM13.466 16.5877L15.2289 15.1898L14.297 14.0145L12.534 15.4123L13.466 16.5877ZM15.2289 8.81016L13.466 7.41232L12.534 8.58768L14.297 9.98553L15.2289 8.81016ZM15.2289 15.1898C15.9176 14.6438 16.4852 14.1953 16.8875 13.7945C17.2932 13.3904 17.6294 12.9418 17.7208 12.3687L16.2395 12.1327C16.2225 12.2388 16.1532 12.4087 15.8289 12.7318C15.5012 13.0582 15.0143 13.4457 14.297 14.0145L15.2289 15.1898ZM14.297 9.98553C15.0143 10.5543 15.5012 10.9418 15.8289 11.2682C16.1532 11.5913 16.2225 11.7612 16.2395 11.8673L17.7208 11.6313C17.6294 11.0582 17.2932 10.6096 16.8875 10.2055C16.4852 9.80475 15.9175 9.35616 15.2289 8.81016L14.297 9.98553ZM17.7208 12.3687C17.7402 12.2466 17.75 12.1234 17.75 12H16.25C16.25 12.0441 16.2465 12.0883 16.2395 12.1327L17.7208 12.3687ZM17.75 12C17.75 11.8766 17.7402 11.7534 17.7208 11.6313L16.2395 11.8673C16.2465 11.9117 16.25 11.9559 16.25 12H17.75ZM16 12.75H17V11.25H16V12.75Z"
+                fill="#FF7777" />
+            </svg>
+            <span class="link_name ml-4 font-iransans-light">خروج</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+    <main class="flex-1 p-6 mt-2 grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <!-- Card 1 -->
+      <div class="bg-[#1D2027] p-4 rounded-md shadow-sm w-full lg:col-span-1">
+        <!-- محتوا -->
+        <div class="max-w-md w-full">
+          <div class="dropdown flex items-center justify-between">
+            <span>ولتاژ</span>
+            <span>&#9662;</span>
+          </div>
+          <br>
+          <canvas id="lineChart" class="mb-8"></canvas>
+          <br>
+          <div class="text-center">
+            <h2 class="text-lg font-semibold mb-4">بالانس فازها</h2>
+            <canvas id="doughnutChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="bg-[#1D2027] p-7 rounded-md shadow-sm w-full lg:col-span-2">
+        <!-- محتوای کارت دوم -->
+        <h1 class="text-xl mb-4">نمودار خطی</h1>
+        <div class="chart">
+          <div class="top-box flex justify-between">
+            <div class="top">
+              <div class="line"></div>
+              <div class="box"></div>
+              <div class="text">57 mv <br />84 mvar</div>
+            </div>
+            <div class="top">
+              <div class="line"></div>
+              <div class="box"></div>
+              <div class="text">57 mv <br />84 mvar</div>
+            </div>
+            <div class="top">
+              <div class="line"></div>
+              <div class="box"></div>
+              <div class="text">57 mv <br />84 mvar</div>
+            </div>
+          </div>
+          <div class="center"></div>
+          <div class="bottom-box flex justify-between">
+            <div class="bottom">
+              <div class="line" style="height: 50%"></div>
+              <div
+                class="box"
+                style="border: 4px solid rgb(0, 225, 255); border-radius: 50%; top: 50%"
+              ></div>
+              <div class="text">57 mv <br />84 mvar</div>
+            </div>
+            <div class="bottom">
+              <div class="line" style="height: 50%"></div>
+              <div class="box" style="top: 30px"></div>
+              <div
+                class="box"
+                style="border: 4px solid yellow; border-radius: 50%; top: 50%"
+              ></div>
+              <div class="text">57 mv <br />84 mvar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Card 3 -->
+      <div class="bg-[#1D2027] p-7 rounded-md shadow-sm w-full lg:col-span-3 mt-4">
+        <!-- محتوا -->
+        <table class="w-full text-right border-collapse border border-gray-600 rounded-t-lg">
+          <thead>
+            <tr>
+              <th class="py-2 text-center border border-gray-600">شماره‌ تنه</th>
+              <th class="py-2 text-center border border-gray-600">نام اندازه‌گیری</th>
+              <th class="py-2 text-center border border-gray-600">دستگاه مورد اندازه‌گیری</th>
+              <th class="py-2 text-center border border-gray-600">ضریب</th>
+              <th class="py-2 text-center border border-gray-600">آستانه جریان</th>
+              <th class="py-2 text-center border border-gray-600">آستانه ولتاژ</th>
+              <th class="py-2 text-center border border-gray-600">آستانه دیماند</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="py-2 text-center border border-gray-600">1</td>
+              <td class="py-2 text-center border border-gray-600">کنتور ورودی</td>
+              <td class="py-2 text-center border border-gray-600">انرژی ورودی</td>
+              <td class="py-2 text-center border border-gray-600">5</td>
+              <td class="py-2 text-center border border-gray-600">3</td>
+              <td class="py-2 text-center border border-gray-600">6</td>
+              <td class="py-2 text-center border border-gray-600">12</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    <script>
+      const lineChartCtx = document.getElementById('lineChart').getContext('2d');
+      const lineChart = new Chart(lineChartCtx, {
+        type: 'line',
+        data: {
+          labels: ['13:00', '12:50', '12:40', '12:30', '12:20', '12:10', '12:00'],
+          datasets: [
+            {
+              label: '(R)',
+              data: [1500, 1300, 1100, 1400, 1200, 900, 800],
+              borderColor: '#A855F7',
+              fill: false,
+            },
+            {
+              label: '(S)',
+              data: [1400, 1200, 900, 800, 1000, 1200, 1400],
+              borderColor: '#34D399',
+              fill: false,
+            },
+            {
+              label: '(T)',
+              data: [900, 800, 1000, 1200, 1300, 1100, 1000],
+              borderColor: '#FBBF24',
+              fill: false,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            x: {
+              ticks: { color: '#ffffff' },
+            },
+            y: {
+              ticks: { color: '#ffffff' },
+            },
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: '#ffffff',
+              },
+            },
+          },
+        },
+      });
+  
+      const doughnutChartCtx = document.getElementById('doughnutChart').getContext('2d');
+      const doughnutChart = new Chart(doughnutChartCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['R', 'S', 'T'],
+          datasets: [
+            {
+              data: [45, 25, 30],
+              backgroundColor: ['#A855F7', '#34D399', '#FBBF24'],
+              borderColor: '#1a1a1a',
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              labels: {
+                color: '#ffffff',
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+  </html>
