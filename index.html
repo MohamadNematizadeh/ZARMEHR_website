@@ -51,19 +51,49 @@
         font-family: 'IRANSans-ultralight', sans-serif;
     }
 </style>
+<style>
+    .chart-container {
+        position: relative;
+        width: 100%;
+        height: 400px;
+    }
+
+    .buttons-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    .buttons-container button {
+        background-color: #3498DB;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .buttons-container button:hover {
+        background-color: #2980B9;
+    }
+</style>
 
 <body class="bg-[#131419] text-white">
-    
+
     <div class="flex p-6 ">
         <br>
         <div class="sidebar bg-[#1D2027] h-screen w-60 x-60 mt-8 p-4 border-collapse border border-gray-800 rounded">
             <div class="logo_details flex items-center justify-between ">
                 <div class="logo_name">
-                    
+
                     <img src="image/logo.png" style="max-width: 90px;">
                 </div>
             </div>
-           
+
             <hr>
 
             <ul class="nav-list mt-3">
@@ -128,16 +158,93 @@
 
         <main class="flex-1 p-6 mt-2">
             <!-- Card 1 -->
-            <div class="bg-[#1D2027] p-6 rounded-md shadow-sm border-gray-900">
-                <div class="flex items-center justify-between">
-                    <h4 class="text-2xl font-iransans-medium">قرائت بر خط</h4>
-                    <h1 class="font-iransans-light">آخرین زمان قرائت:۱۴۰۳/۰۳/۲۵ - ۱۲:۳۰</h1>
-                    <button
-                        class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#3498DB] font-iransans-light">انتخاب
+            <div class="bg-[#1D2027] p-6 rounded-md shadow-sm border border-gray-900">
+                <div class="flex items-center justify-between mb-4">
+                    <h4 class="text-2xl font-iransans-light">قرائت بر خط</h4>
+                    <h1 class="font-iransans-light">آخرین زمان قرائت: ۱۴۰۳/۰۳/۲۵ - ۱۲:۳۰</h1>
+                    <button data-modal-target="static-modal" data-modal-toggle="static-modal"
+                        class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
                         کنتور</button>
                 </div>
 
-                <div class="flex items-center mt-4">
+                <!-- Main modal -->
+                <div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+                    class="hidden fixed inset-0 z-50 flex items-center justify-center">
+                    <div class="relative p-4 w-full max-w-2xl bg-white dark:bg-gray-700 rounded-lg shadow">
+                        <!-- Modal header -->
+                        <div class="flex items-center justify-between p-4 border-b dark:border-gray-600">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">انتخاب کنتور</h3>
+                            <button type="button"
+                                class="text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg text-sm p-2"
+                                data-modal-hide="static-modal">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-4 space-y-4">
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                            <button
+                                class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#2980B9] font-iransans-light">انتخاب
+                                کنتور</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center mt-4 space-x-3 rtl:space-x-reverse">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M12 11V17M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
@@ -146,10 +253,8 @@
                             d="M13 8C13 8.55228 12.5523 9 12 9C11.4477 9 11 8.55228 11 8C11 7.44772 11.4477 7 12 7C12.5523 7 13 7.44772 13 8Z"
                             fill="white" />
                     </svg>
-                    <p class="ml-5 font-iransans-light">تمامی مقادیر هر ۱ دقیقه یکبار آپدیت می‌شوند.</p>
+                    <p class="font-iransans-light">تمامی مقادیر هر ۱ دقیقه یکبار آپدیت می‌شوند.</p>
                 </div>
-
-                <br>
                 <h3 class="font-iransans-light">کنتور ورودی</h3>
                 <br>
                 <table class="w-full text-right text-white  py-9 rounded-lg">
@@ -210,155 +315,141 @@
             <br>
 
             <!-- Card 2 -->
-            <div class="bg-[#1D2027] p-6 rounded-md shadow-sm mt-4 border-gray-900">
+            <div class="bg-[#1D2027] p-7 rounded-md shadow-sm mt-1 border-gray-900">
                 <div class="flex items-center justify-between">
                     <h4 class="text-2xl font-iransans-medium">تاریخچه</h4>
                     <button class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#3498DB]">
                         دریافت اکسل
-
                     </button>
                 </div>
-
 
                 <br>
                 <h3 class="font-iransans-medium">انتخاب پارامتر</h3>
                 <br>
 
-                <button
-                    class="bg-[#3498DB] text-white px-4 py-2 rounded-lg hover:bg-[#3498DB]-400 font-iransans-medium ">ولتاژ</button>
-                <button
-                    class="bg-indigo-900 text-white px-4 py-2 rounded-lg hover:bg-[rgba(52, 152, 219, 0.25)] font-iransans-medium">جریان</button>
-                <button
-                    class="bg-indigo-900 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 font-iransans-medium">توان
-                    لحظه‌ای</button>
-                <button
-                    class="bg-indigo-900 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 font-iransans-medium">توان
-                    ظاهری</button>
-                <button
-                    class="bg-indigo-900 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 font-iransans-medium">ضریب
-                    توان</button>
-                <button
-                    class="bg-indigo-900 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 font-iransans-medium">توان
-                    راکتیو</button>
-                <button
-                    class="bg-indigo-900 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 font-iransans-medium">انرژی
-                    تجمعی</button>
-                <button
-                    class="bg-indigo-900 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 font-iransans-medium">کسینوس
-                    فی</button>
+                <div class="relative flex flex-wrap gap-2 justify-between">
+                    <div class="flex gap-2">
+                        <button
+                            class="bg-[#3498DB] text-white px-2 py-1 rounded-md hover:bg-[#3498DB]-400 hover:bg-opacity-25 font-iransans-medium text-xs">ولتاژ</button>
+                        <button
+                            class="bg-[#3498DB] bg-opacity-25 text-white px-3 py-1 rounded-md hover:bg-[#3498DB] font-iransans-medium text-xs">جریان</button>
+                        <button
+                            class="bg-[#3498DB] bg-opacity-25 text-white px-2 py-1 rounded-md hover:bg-[#3498DB] font-iransans-medium text-xs">توان
+                            لحظه‌ای</button>
+                        <button
+                            class="bg-[#3498DB] bg-opacity-25 text-white px-2 py-1 rounded-md hover:bg-[#3498DB] font-iransans-medium text-xs">توان
+                            ظاهری</button>
+                        <button
+                            class="bg-[#3498DB] bg-opacity-25 text-white px-3 py-1 rounded-md hover:bg-[#3498DB] font-iransans-medium text-xs">ضریب
+                            توان</button>
+                        <button
+                            class="bg-[#3498DB] bg-opacity-25 text-white px-2 py-1 rounded-md hover:bg-[#3498DB] font-iransans-medium text-xs">توان
+                            راکتیو</button>
+                        <button
+                            class="bg-[#3498DB] bg-opacity-25 text-white px-2 py-2 rounded-md hover:bg-[#3498DB] font-iransans-medium text-xs">انرژی
+                            تجمعی</button>
+                        <button
+                            class="bg-[#3498DB] bg-opacity-25 text-white px-2 py-2 rounded-md hover:bg-[#3498DB] font-iransans-medium text-xs">کسینوس
+                            فی</button>
+                    </div>
+                    <div class="flex gap-2">
+
+                        <button
+                            class="bg-[#FFFFFF] bg-opacity-80 text-black font-iransans-bold px-4 py-1 rounded-md hover:bg-[#3498DB] font-iransans-ultralight text-xs flex items-center">
+                            تا تاریخ
+                            <svg width="16" height="18" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="ml-2">
+                                <!-- محتوای SVG شما -->
+                            </svg>
+                        </button>
+                        <button
+                            class="bg-[#FFFFFF] bg-opacity-80 text-black font-iransans-bold px-4 py-1 rounded-md hover:bg-[#3498DB] font-iransans-ultralight text-xs flex items-center">
+                            تا تاریخ
+                            <svg width="16" height="18" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="ml-2">
+                                <!-- محتوای SVG شما -->
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
 
                 <br>
-                <canvas id="line-chart"></canvas>
+
+                <div class="chart-container">
+                    <canvas id="lineChart" class="mb-8"></canvas>
+                </div>
             </div>
         </main>
     </div>
 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
-    <script type="text/javascript">
-        (function () {
-            var config = {
-                type: "line",
-                data: {
-                    labels: ["زمان", "10 خرداد", "۱۱ خرداد", "۱۲ خرداد", "۱۳ خرداد", "۱۴ خرداد", "۱۵ خرداد", "۱۶ خرداد", "۱۷ خرداد", "۱۸ خرداد"],
-                    datasets: [
-                        {
-                            label: new Date().getFullYear(),
-                            backgroundColor: "#F1C40F",
-                            borderColor: "#F1C40F",
-                            data: [45, 43, 66, 44, 56, 52, 45,65,67,69],
-                            fill: false,
-                        },
-                        {
-                            label: new Date().getFullYear() - 1,
-                            fill: false,
-                            backgroundColor: "#B968DB",
-                            borderColor: "#B968DB",
-                            data: [65, 67, 69, 90, 68, 60, 60,51,54,42,],
-                        },
-                        {
-                            label: new Date().getFullYear() - 2,
-                            fill: false,
-                            backgroundColor: "#2ECC71",
-                            borderColor: "#2ECC71",
-                            data: [50, 78, 83, 74, 96, 70, 87,70,87,89],
-                        },
-                    ],
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    responsive: true,
-                    title: {
-                        display: false,
-                        text: "Sales Charts",
-                        fontColor: "white",
+    <script>
+        // JavaScript to handle the modal toggle
+        document.querySelectorAll('[data-modal-toggle]').forEach(button => {
+            button.addEventListener('click', () => {
+                const modalId = button.getAttribute('data-modal-target');
+                document.getElementById(modalId).classList.toggle('hidden');
+            });
+        });
+
+        document.querySelectorAll('[data-modal-hide]').forEach(button => {
+            button.addEventListener('click', () => {
+                const modalId = button.getAttribute('data-modal-hide');
+                document.getElementById(modalId).classList.add('hidden');
+            });
+        });
+
+
+        const lineChartCtx = document.getElementById('lineChart').getContext('2d');
+        const lineChart = new Chart(lineChartCtx, {
+            type: 'line',
+            data: {
+                labels: ['13:00', '12:50', '12:40', '12:30', '12:20', '12:10', '12:00'],
+                datasets: [
+                    {
+                        label: '(R)',
+                        data: [45, 43, 66, 44, 56, 52, 45, 65, 67, 69],
+                        borderColor: '#A855F7',
+                        fill: false,
                     },
+                    {
+                        label: '(S)',
+                        data: [65, 67, 69, 90, 68, 60, 60, 51, 54, 42],
+                        borderColor: '#34D399',
+                        fill: false,
+                    },
+                    {
+                        label: '(T)',
+                        data: [50, 78, 83, 74, 96, 70, 87, 70, 87, 89],
+                        borderColor: '#FBBF24',
+                        fill: false,
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        ticks: { color: '#ffffff' },
+                    },
+                    y: {
+                        ticks: { color: '#ffffff' },
+                    },
+                },
+                plugins: {
                     legend: {
                         labels: {
-                            fontColor: "white",
+                            color: '#ffffff',
                         },
-                        align: "end",
-                        position: "bottom",
-                    },
-                    tooltips: {
-                        mode: "index",
-                        intersect: false,
-                    },
-                    hover: {
-                        mode: "nearest",
-                        intersect: true,
-                    },
-                    scales: {
-                        xAxes: [
-                            {
-                                ticks: {
-                                    fontColor: "rgba(255,255,255,.7)",
-                                },
-                                display: true,
-                                scaleLabel: {
-                                    display: false,
-                                    labelString: "Month",
-                                    fontColor: "white",
-                                },
-                                gridLines: {
-                                    display: false,
-                                    borderDash: [2],
-                                    borderDashOffset: [2],
-                                    color: "rgba(33, 37, 41, 0.3)",
-                                    zeroLineColor: "rgba(0, 0, 0, 0)",
-                                    zeroLineBorderDash: [2],
-                                    zeroLineBorderDashOffset: [2],
-                                },
-                            },
-                        ],
-                        yAxes: [
-                            {
-                                ticks: {
-                                    fontColor: "rgba(255,255,255,.7)",
-                                },
-                                display: true,
-                                scaleLabel: {
-                                    display: false,
-                                    labelString: "Value",
-                                    fontColor: "white",
-                                },
-                                gridLines: {
-                                    borderDash: [3],
-                                    borderDashOffset: [3],
-                                    drawBorder: false,
-                                    color: "rgba(255, 255, 255, 0.15)",
-                                    zeroLineColor: "rgba(33, 37, 41, 0)",
-                                    zeroLineBorderDash: [2],
-                                    zeroLineBorderDashOffset: [2],
-                                },
-                            },
-                        ],
                     },
                 },
-            };
-            var ctx = document.getElementById("line-chart").getContext("2d");
-            window.myLine = new Chart(ctx, config);
-        })();
+            },
+        });
+
     </script>
-    
-    </body>
-    </html>
+
+</body>
+
+</html>
