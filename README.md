@@ -5,7 +5,7 @@
    ZARMEHR website
     <br/>
     <br/>
-    <a href="https://mohamadnematizadeh.github.io/Project_ZARMEHR">View Demo</a>
+    <a href="https://mohamadnematizadeh.github.io/ZARMEHR_website/">View Demo</a>
   </p>
 </p>
 
