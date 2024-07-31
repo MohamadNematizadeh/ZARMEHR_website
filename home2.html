@@ -53,72 +53,80 @@
   }
 
 
-.chart {
+  .chart {
 
-  width: 600px;
-  height: 600px;
-  display: flex;
-  flex-direction: column;
-  margin: 50px auto;
-  justify-content: center;
-  align-items: center;
-}
-.top-box,.bottom-box {
-  width: 100%;
+    width: 600px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+    justify-content: center;
+    align-items: center;
+  }
 
-  height: calc(50% - 10px);
-  display: flex;
-}
-.bottom-box{
+  .top-box,
+  .bottom-box {
+    width: 100%;
+
+    height: calc(40% - 10px);
+    display: flex;
+  }
+
+  .bottom-box {
     flex-direction: row-reverse;
-    gap: 50px;
-}
-.bottom,
-.top {
-  width: 33.3333%;
-  height: 100%;
-  position: relative;
-}
-.center {
-  width: 100%;
-  height: 4px;
-  background: #ffffff;
-}
-.text{
+    gap: 10px;
+  }
+
+  .bottom,
+  .top {
+    width: 33.3333%;
+    height: 100%;
+    position: relative;
+  }
+
+  .center {
+    width: 100%;
+    height: 3px;
+    background: #ffffff;
+  }
+
+  .text {
     position: absolute;
     top: 0;
     left: 70px;
     font-size: 1.5rem;
+    font-family: 'IRANSans-medium', sans-serif;
     text-transform: uppercase;
     color: gray;
-}
-.box{
+  }
+
+  .box {
     width: 50px;
     height: 50px;
-    border: 4px solid rgb(255, 0, 0);
+    border: 3px solid rgb(255, 0, 0);
     position: absolute;
     bottom: 60px;
     left: 40px;
     transform: translateX(-50%);
-}
-.line{
-    width: 4px ;
+  }
+
+  .line {
+    width: 3px;
     height: 100%;
     background: rgb(255, 255, 255);
     position: absolute;
     left: 40px;
-}
-
+  }
 </style>
 
 <body class="bg-[#131419] text-white">
 
-  <div class="flex p-6 ">
+  <div class="flex p-6">
     <br>
-    <div class="sidebar bg-[#1D2027] h-screen w-60 x-10 mt-8 p-4 border-collapse border border-gray-800 rounded">
-      <div class="logo_details flex items-center justify-between ">
+    <div class="sidebar bg-[#1D2027] h-screen w-60 mt-8 p-4 border-collapse border border-gray-800 rounded">
+      <div class="logo_details flex items-center justify-center mb-4">
         <div class="logo_name">
-          <img src="image/logo.png" style="max-width: 90px;">
+          <img src="image/logo.png" class="content" style="max-width: 90px;">
         </div>
       </div>
       <hr>
@@ -184,23 +192,27 @@
 
     <main class="flex-1 p-6 mt-2 grid grid-cols-1 lg:grid-cols-3 gap-4">
       <!-- Card 1 -->
-      <div class="bg-[#1D2027] p-4 rounded-md shadow-sm w-full lg:col-span-1">
-        <!-- محتوا -->
-        <div class="max-w-md w-full">
-          <div class="dropdown flex items-center justify-between">
-            <span>ولتاژ</span>
-            <span>&#9662;</span>
+      <div class="bg-[#1D2027] p-6 rounded-lg shadow-md w-full lg:col-span-1 flex flex-col">
+        <div class="flex justify-between items-center mb-5">
+          <span>ولتاژ</span>
+          <span>&#9662;</span>
+        </div>
+        <div class="flex-grow">
+          <div class="canvas-container h-[400px] ">
+            <canvas id="lineChart"></canvas>
           </div>
-          <br>
-          <canvas id="lineChart" class="mb-8"></canvas>
           <br>
           <div class="text-center">
             <h2 class="text-lg font-semibold mb-4">بالانس فازها</h2>
-            <canvas id="doughnutChart"></canvas>
+            <div class="canvas-container">
+              <canvas id="doughnutChart"></canvas>
+            </div>
           </div>
         </div>
       </div>
       <!-- Card 2 -->
+
+      
       <div class="bg-[#1D2027] p-7 rounded-md shadow-sm w-full lg:col-span-2">
         <!-- محتوای کارت دوم -->
         <h1 class="text-xl mb-4">نمودار خطی</h1>
@@ -209,7 +221,8 @@
             <div class="top">
               <div class="line"></div>
               <div class="box"></div>
-              <div class="text">57 mv <br />84 mvar</div>
+              <div class="text"> 57 mv <br>
+                84 mvar</div>
             </div>
             <div class="top">
               <div class="line"></div>
@@ -226,55 +239,53 @@
           <div class="bottom-box flex justify-between">
             <div class="bottom">
               <div class="line" style="height: 50%"></div>
-              <div
-                class="box"
-                style="border: 4px solid rgb(0, 225, 255); border-radius: 50%; top: 50%"
-              ></div>
+              <div class="box" style="border: 4px solid rgb(0, 225, 255); border-radius: 50%; top: 50%"></div>
               <div class="text">57 mv <br />84 mvar</div>
             </div>
             <div class="bottom">
               <div class="line" style="height: 50%"></div>
               <div class="box" style="top: 30px"></div>
-              <div
-                class="box"
-                style="border: 4px solid yellow; border-radius: 50%; top: 50%"
-              ></div>
+              <div class="box" style="border: 4px solid yellow; border-radius: 50%; top: 50%"></div>
               <div class="text">57 mv <br />84 mvar</div>
             </div>
           </div>
         </div>
       </div>
-  
+
       <!-- Card 3 -->
       <div class="bg-[#1D2027] p-7 rounded-md shadow-sm w-full lg:col-span-3 mt-4">
         <!-- محتوا -->
-        <table class="w-full text-right border-collapse border border-gray-600 rounded-t-lg">
+        <table class="w-full text-right rounded border border-gray-600">
           <thead>
             <tr>
-              <th class="py-2 text-center border border-gray-600">شماره‌ تنه</th>
-              <th class="py-2 text-center border border-gray-600">نام اندازه‌گیری</th>
-              <th class="py-2 text-center border border-gray-600">دستگاه مورد اندازه‌گیری</th>
-              <th class="py-2 text-center border border-gray-600">ضریب</th>
-              <th class="py-2 text-center border border-gray-600">آستانه جریان</th>
-              <th class="py-2 text-center border border-gray-600">آستانه ولتاژ</th>
-              <th class="py-2 text-center border border-gray-600">آستانه دیماند</th>
+              <th colspan="7" class="py-2 text-center border border-gray-600 ">اطلاعات اندازه‌گیری</th>
+            </tr>
+            <tr>
+              <th class="py-2 text-center border border-gray-600 text-gray-400">شماره‌ تنه</th>
+              <th class="py-2 text-center border border-gray-600 text-gray-400">نام اندازه‌گیری</th>
+              <th class="py-2 text-center border border-gray-600 text-gray-400">دستگاه مورد اندازه‌گیری</th>
+              <th class="py-2 text-center border border-gray-600 text-gray-400">ضریب</th>
+              <th class="py-2 text-center border border-gray-600 text-gray-400">آستانه جریان</th>
+              <th class="py-2 text-center border border-gray-600 text-gray-400">آستانه ولتاژ</th>
+              <th class="py-2 text-center border border-gray-600 text-gray-400">آستانه دیماند</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="py-2 text-center border border-gray-600">1</td>
-              <td class="py-2 text-center border border-gray-600">کنتور ورودی</td>
-              <td class="py-2 text-center border border-gray-600">انرژی ورودی</td>
-              <td class="py-2 text-center border border-gray-600">5</td>
-              <td class="py-2 text-center border border-gray-600">3</td>
-              <td class="py-2 text-center border border-gray-600">6</td>
-              <td class="py-2 text-center border border-gray-600">12</td>
+              <td class="py-2 text-center border border-gray-600 text-gray-400">1</td>
+              <td class="py-2 text-center border border-gray-600 text-gray-400">کنتور ورودی</td>
+              <td class="py-2 text-center border border-gray-600 text-gray-400">انرژی ورودی</td>
+              <td class="py-2 text-center border border-gray-600 text-gray-400">5</td>
+              <td class="py-2 text-center border border-gray-600 text-gray-400">3</td>
+              <td class="py-2 text-center border border-gray-600 text-gray-400">6</td>
+              <td class="py-2 text-center border border-gray-600 text-gray-400">12</td>
             </tr>
           </tbody>
         </table>
       </div>
+
     </main>
-  
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
     <script>
       const lineChartCtx = document.getElementById('lineChart').getContext('2d');
@@ -285,19 +296,19 @@
           datasets: [
             {
               label: '(R)',
-              data: [1500, 1300, 1100, 1400, 1200, 900, 800],
+              data: [200, 300, 400, 400, 200, 100, 20],
               borderColor: '#A855F7',
               fill: false,
             },
             {
               label: '(S)',
-              data: [1400, 1200, 900, 800, 1000, 1200, 1400],
+              data: [40, 100, 200, 400, 200, 100, 100],
               borderColor: '#34D399',
               fill: false,
             },
             {
               label: '(T)',
-              data: [900, 800, 1000, 1200, 1300, 1100, 1000],
+              data: [80, 190, 190, 190, 200, 200, 200],
               borderColor: '#FBBF24',
               fill: false,
             },
@@ -305,6 +316,7 @@
         },
         options: {
           responsive: true,
+          maintainAspectRatio: false,
           scales: {
             x: {
               ticks: { color: '#ffffff' },
@@ -322,7 +334,8 @@
           },
         },
       });
-  
+
+
       const doughnutChartCtx = document.getElementById('doughnutChart').getContext('2d');
       const doughnutChart = new Chart(doughnutChartCtx, {
         type: 'doughnut',
@@ -333,6 +346,7 @@
               data: [45, 25, 30],
               backgroundColor: ['#A855F7', '#34D399', '#FBBF24'],
               borderColor: '#1a1a1a',
+              borderWidth: 2, // تنظیم عرض مرز
             },
           ],
         },
@@ -344,9 +358,24 @@
                 color: '#ffffff',
               },
             },
-          },
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  let label = context.label || '';
+                  if (label) {
+                    label += ': ';
+                  }
+                  if (context.raw !== null) {
+                    label += context.raw;
+                  }
+                  return label;
+                }
+              }
+            }
+          }
         },
       });
     </script>
-  </body>
-  </html>
+</body>
+
+</html>
