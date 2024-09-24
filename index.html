@@ -10,6 +10,9 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-jalaali/2.0.1/moment-jalaali.min.js"></script>
+
 </head>
 <style>
   @font-face {
@@ -117,6 +120,14 @@
     position: absolute;
     left: 40px;
   }
+
+  .chart {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
 </style>
 
 <body class="bg-[#131419] text-white">
@@ -177,6 +188,7 @@
         </li>
         <hr class="border-gray-600">
         <li class="group">
+
           <a href="#" class="flex items-center p-4 hover:bg-blue-600 rounded">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -185,44 +197,50 @@
             </svg>
             <span class="link_name ml-4 font-iransans-light">خروج</span>
           </a>
+
         </li>
 
       </ul>
-    </div>
 
+
+    </div>
     <main class="flex-1 p-6 mt-2 grid grid-cols-1 lg:grid-cols-3 gap-4">
-      <!-- Card 1 -->
-      <div class="bg-[#1D2027] p-6 rounded-lg shadow-md w-full lg:col-span-1 flex flex-col">
-        <div class="flex justify-between items-center mb-5">
-          <span>ولتاژ</span>
-          <span>&#9662;</span>
-        </div>
-        <div class="flex-grow">
-          <div class="canvas-container h-[400px] ">
-            <canvas id="lineChart"></canvas>
+      <!-- Card for Date -->
+      <div class="lg:col-span-3 p-1 ">
+        <h1 id="date" class="font-iransans-light text-white text-xl text-left">تاریخ امروز</h1>
+      </div>
+
+      <div class="lg:col-span-1 flex flex-col">
+        <!-- Card 1 -->
+        <div class="bg-[#1D2027] p-6 rounded-lg shadow-md w-full flex flex-col">
+          <div class="flex justify-between items-center mb-5">
+            <span>ولتاژ</span>
+            <span>&#9662;</span>
           </div>
-          <br>
-          <div class="text-center">
-            <h2 class="text-lg font-semibold mb-4">بالانس فازها</h2>
-            <div class="canvas-container">
-              <canvas id="doughnutChart"></canvas>
+          <div class="flex-grow">
+            <div class="canvas-container h-[400px]">
+              <canvas id="lineChart"></canvas>
+            </div>
+            <br>
+            <div class="text-center">
+              <h2 class="text-lg font-semibold mb-4">بالانس فازها</h2>
+              <div class="canvas-container">
+                <canvas id="doughnutChart"></canvas>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- Card 2 -->
 
-      
-      <div class="bg-[#1D2027] p-7 rounded-md shadow-sm w-full lg:col-span-2">
-        <!-- محتوای کارت دوم -->
+      <!-- Card 2 -->
+      <div class="relative bg-[#1D2027] p-7 rounded-md shadow-sm w-full lg:col-span-2">
         <h1 class="text-xl mb-4">نمودار خطی</h1>
         <div class="chart">
           <div class="top-box flex justify-between">
             <div class="top">
               <div class="line"></div>
               <div class="box"></div>
-              <div class="text"> 57 mv <br>
-                84 mvar</div>
+              <div class="text"> 57 mv <br> 84 mvar</div>
             </div>
             <div class="top">
               <div class="line"></div>
@@ -254,11 +272,10 @@
 
       <!-- Card 3 -->
       <div class="bg-[#1D2027] p-7 rounded-md shadow-sm w-full lg:col-span-3 mt-4">
-        <!-- محتوا -->
         <table class="w-full text-right rounded border border-gray-600">
           <thead>
             <tr>
-              <th colspan="7" class="py-2 text-center border border-gray-600 ">اطلاعات اندازه‌گیری</th>
+              <th colspan="7" class="py-2 text-center border border-gray-600">اطلاعات اندازه‌گیری</th>
             </tr>
             <tr>
               <th class="py-2 text-center border border-gray-600 text-gray-400">شماره‌ تنه</th>
@@ -283,81 +300,75 @@
           </tbody>
         </table>
       </div>
-
     </main>
+
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
     <script>
+      const today = moment().format('jYYYY/jM/jD - HH:mm');
+      document.getElementById('date').textContent = `تاریخ امروز: ${today}`;
       const lineChartCtx = document.getElementById('lineChart').getContext('2d');
+      const doughnutChartCtx = document.getElementById('doughnutChart').getContext('2d');
+
+      // داده‌های اولیه برای نمودار خطی
+      const initialLineData = {
+        labels: ['13:00', '12:50', '12:40', '12:30', '12:20', '12:10', '12:00'],
+        datasets: [
+          {
+            label: '(R)',
+            data: [200, 300, 400, 400, 200, 100, 20],
+            borderColor: '#A855F7',
+            fill: false,
+          },
+          {
+            label: '(S)',
+            data: [40, 100, 200, 400, 200, 100, 100],
+            borderColor: '#34D399',
+            fill: false,
+          },
+          {
+            label: '(T)',
+            data: [80, 190, 190, 190, 200, 200, 200],
+            borderColor: '#FBBF24',
+            fill: false,
+          },
+        ],
+      };
+
+      const initialDoughnutData = {
+        labels: ['R', 'S', 'T'],
+        datasets: [
+          {
+            data: [45, 25, 30],
+            backgroundColor: ['#A855F7', '#34D399', '#FBBF24'],
+            borderColor: '#1a1a1a',
+            borderWidth: 2,
+          },
+        ],
+      };
       const lineChart = new Chart(lineChartCtx, {
         type: 'line',
-        data: {
-          labels: ['13:00', '12:50', '12:40', '12:30', '12:20', '12:10', '12:00'],
-          datasets: [
-            {
-              label: '(R)',
-              data: [200, 300, 400, 400, 200, 100, 20],
-              borderColor: '#A855F7',
-              fill: false,
-            },
-            {
-              label: '(S)',
-              data: [40, 100, 200, 400, 200, 100, 100],
-              borderColor: '#34D399',
-              fill: false,
-            },
-            {
-              label: '(T)',
-              data: [80, 190, 190, 190, 200, 200, 200],
-              borderColor: '#FBBF24',
-              fill: false,
-            },
-          ],
-        },
+        data: initialLineData,
         options: {
           responsive: true,
           maintainAspectRatio: false,
           scales: {
-            x: {
-              ticks: { color: '#ffffff' },
-            },
-            y: {
-              ticks: { color: '#ffffff' },
-            },
+            x: { ticks: { color: '#ffffff' } },
+            y: { ticks: { color: '#ffffff' } },
           },
           plugins: {
-            legend: {
-              labels: {
-                color: '#ffffff',
-              },
-            },
+            legend: { labels: { color: '#ffffff' } },
           },
         },
       });
 
-
-      const doughnutChartCtx = document.getElementById('doughnutChart').getContext('2d');
       const doughnutChart = new Chart(doughnutChartCtx, {
         type: 'doughnut',
-        data: {
-          labels: ['R', 'S', 'T'],
-          datasets: [
-            {
-              data: [45, 25, 30],
-              backgroundColor: ['#A855F7', '#34D399', '#FBBF24'],
-              borderColor: '#1a1a1a',
-              borderWidth: 2, // تنظیم عرض مرز
-            },
-          ],
-        },
+        data: initialDoughnutData,
         options: {
           responsive: true,
           plugins: {
-            legend: {
-              labels: {
-                color: '#ffffff',
-              },
-            },
+            legend: { labels: { color: '#ffffff' } },
             tooltip: {
               callbacks: {
                 label: function (context) {
@@ -369,12 +380,27 @@
                     label += context.raw;
                   }
                   return label;
-                }
-              }
-            }
-          }
+                },
+              },
+            },
+          },
         },
       });
+
+      function updateCharts() {
+        lineChart.data.datasets.forEach((dataset) => {
+          dataset.data.shift(); 
+          dataset.data.push(Math.floor(Math.random() * 500));
+        });
+        doughnutChart.data.datasets[0].data = [
+          Math.floor(Math.random() * 100),
+          Math.floor(Math.random() * 100),
+          Math.floor(Math.random() * 100),
+        ];
+        lineChart.update();
+        doughnutChart.update();
+      }
+      setInterval(updateCharts, 30000);
     </script>
 </body>
 
